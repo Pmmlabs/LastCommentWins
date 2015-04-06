@@ -1,0 +1,45 @@
+body {
+    background: #000000;
+    color: #FFFFFF;
+    font-family: "Times New Roman",serif;
+}
+
+.header {
+    width: 500px;
+    padding-top: 20px;
+    font-size: 45px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.label {
+    width: 500px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 auto;
+}
+
+.persons {
+    width: 500px;
+    padding: 10px;
+    margin: 0 auto;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.person {
+    padding: 5px;
+    float: left;
+    font-size: 20px;
+}
+
+.value {
+    padding: 5px;
+    float: right;
+    font-size: 20px;
+}
+
+.active {
+    color: #0fb;
+}

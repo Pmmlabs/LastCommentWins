@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
-  <head>  
-    <link rel="stylesheet" type="text/css" href="style.css" />  
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta property="og:image" content="LCW.png">
-    <title>Last comment wins</title>  
-  </head>  
-  <body onload="update()">  
-    <div class="header">Last comment wins</div>  
-    <div class="label">The Real Time Battle</div>  
-    <table class="persons">
-      <tr>  
+    <title>Last comment wins</title>
+</head>
+<body onload="update()">
+<div class="header">Last comment wins</div>
+<div class="label">The Real Time Battle</div>
+<table class="persons">
+    <tr>
         <td></td>
-	<td>Эффективность</td>
-      </tr> 
+        <td>Эффективность</td>
+    </tr>
 
 <?php
 	$login = ''; //Логин
@@ -56,7 +56,14 @@
 	$json_uids = api($str_uids);
 	$i = 0;
 	foreach ($uids as $key => $val) {
-	    echo '<tr><td><span class="person'.($key == $current_uid ? ' active' : '').'" id="per'.$key.'">'.$json_uids['response'][$i]['first_name'].' '.$json_uids['response'][$i]['last_name'].' ('.$counts[$key].' комментов)</span><span class="value" id="val'.$key.'">'.date('n месяцев, j дней, H часов, i минут, s секунд',$val).' ('.$val.')</span></td><td>'.(int)($val / $counts[$key]).'</td></tr>';
+        echo '<tr><td><span class="person' .
+            ($key == $current_uid ? ' active' : '') .
+            '" id="per' . $key . '">' .
+            $json_uids['response'][$i]['first_name'] .
+            ' ' . $json_uids['response'][$i]['last_name'] .
+            ' (' . $counts[$key] . ' комментов)</span><span class="value" id="val' . $key . '">'
+            . date('y лет, n месяцев, j дней, H часов, i минут, s секунд', $val + 946771200) .
+            ' (' . $val . ')</span></td><td>' . (int)($val / $counts[$key]) . '</td></tr>';
 		$i++;
 	}
 
@@ -117,7 +124,7 @@
 			 load_token(true);
 			 api($method);
 		  } else {
-                         echo "fucking fuck";
+             echo "fucking fuck";
 			 var_dump($json);
 		  }
 	   } else {
@@ -126,21 +133,23 @@
 	}
 ?>
 
-</table>  
-    <br/>  
-    <div class="label">Последний комментарий: <?=date(DATE_RFC850,$current_date) ?>
+</table>
+<br/>
+
+<div class="label">Последний комментарий: <?= date(DATE_RFC850, $current_date) ?>
     <br/>
     There can be only one...
-    </div>   
+    <br/>
+    <a class="active" href="LCW.txt">Get the source!</a></div>
   
-    <script type="text/javascript">
-      var base_value = <?=$last_value ?>000;  
-      function update()  
-      {
+<script type="text/javascript">
+    var base_value = <?=$last_value ?>000;
+    function update() {
         base_value += 1000;
         var d = new Date(base_value);
-        document.getElementById("val<?=$current_uid ?>").innerHTML = (d.getYear()-70)+' лет, '+(d.getMonth()+1)+' месяцев, '+d.getDate()+' дней, '+d.getHours()+' часов, '+d.getMinutes()+' минут, '+d.getSeconds()+' секунд ('+(base_value/1000)+')';        setTimeout("update()", 1000);  
-      }    
-    </script>  
-  </body>  
+        document.getElementById("val<?=$current_uid ?>").innerHTML = (d.getYear() - 70) + ' лет, ' + (d.getMonth() + 1) + ' месяцев, ' + d.getDate() + ' дней, ' + d.getHours() + ' часов, ' + d.getMinutes() + ' минут, ' + d.getSeconds() + ' секунд (' + (base_value / 1000) + ')';
+        setTimeout("update()", 1000);
+    }
+</script>
+</body>
 </html>
